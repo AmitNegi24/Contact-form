@@ -1,5 +1,5 @@
 # Contact-form
-It is simple contact form created with HTML,CSS,JAVASCRIPT
+It is simple contact form created with HTML,CSS,JAVASCRIPT.
 Function:
 A user can store his/her data into database or localstorage based on their choice by choosing the selection box in form.
 How to access:
