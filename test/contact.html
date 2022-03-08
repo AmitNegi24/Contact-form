@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html>
+    <title>form</title>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="form_action.js">
+        </script>
+        
+        <style>
+            body {
+    color: black;
+    overflow-x: hidden;
+    height: 100%;
+    background-image: url("https://i.imgur.com/GMmCQHC.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%
+}
+
+.card {
+    padding: 30px 40px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    border: none !important;
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2)
+}
+
+
+
+.form-control-label {
+    margin-bottom: 0
+}
+
+input,
+textarea,
+button {
+    padding: 8px 15px;
+    border-radius: 5px !important;
+    margin: 5px 0px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    font-size: 18px !important;
+    font-weight: 300
+}
+
+input:focus,
+textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #00BCD4;
+    outline-width: 0;
+    font-weight: 400
+}
+
+.btn-block {
+    text-transform: uppercase;
+    font-size: 15px !important;
+    font-weight: 400;
+    height: 43px;
+    cursor: pointer;
+    
+}
+
+.btn-block:hover {
+    color: #fff !important
+}
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0
+}
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid px-1 py-5 mx-auto">
+            <div class="row d-flex justify-content-center">
+                <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                   <div><h3 style="font-size:60px;color:deepskyblue;">SIGN-UP</h3></div> 
+                    <p id="demo"></p>
+                    <div class="card">
+                        <h5 class="text-center mb-4">Powering world-class companies</h5>
+                        <form class="form-card" id="form_id" method="POST" name="myform" onsubmit=" myFunction();">
+                            <div class="row justify-content-between text-left">
+                                <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">First name<span class="text-danger"> *</span></label> <input type="text" id="firstName" name="firstName" placeholder="Enter your first name"  required> </div>
+                                <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Last name<span class="text-danger"> *</span></label> <input type="text" id="lastName" name="lastName" placeholder="Enter your last name"  required> </div>
+                            </div>
+                            <div class="row justify-content-between text-left">
+                                <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Email<span class="text-danger"> *</span></label> <input type="email" id="email" name="email" placeholder="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required> </div>
+                                <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Password<span class="text-danger"> *</span></label> <input type="password" id="password" name="password" required> </div>
+                            </div>
+                            <div class="row justify-content-between text-left">
+                                <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Mobile No.<span class="text-danger"> *</span></label> <input type="tel" id="number" name="number" placeholder="" pattern="[789][0-9]{9}"  required > </div>
+                                <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Zip-code.<span class="text-danger"> *</span></label> <input type="text" id="zip" name="zip" pattern="[0-9]{6}" title="six digit zip code" required> </div>
+                                </div>
+                            <div class="row justify-content-between text-left">
+                                <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Storage Medium<span class="text-danger"> *</span></label> <select id="mySelect" onchange="myFunction()">
+                                    <option value="database" id="database">Data Base</option>
+                                    <option value="localstorage" id="localstorage">Local Storage</option>
+                                </select> </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="form-group col-sm-6"> <button type="submit" name="submit" value="submit" onclick="myFunction()" class="btn-block btn-primary">Sign up</button> </div>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+<script>
+function myFunction() {
+
+  var x = document.getElementById("mySelect").value;
+  document.getElementById("demo").innerHTML = "You selected: " + x;
+  
+  if(x=="localstorage"){
+    document.getElementById("form_id").addEventListener("click",function(event){
+        emailReg=document.getElementById('email').pattern;
+        email=document.getElementById('email').value;
+        zip=document.getElementById('zip').value;
+        zipReg=document.getElementById('zip').pattern;
+        number=document.getElementById('number').value;
+        numberReg=document.getElementById('number').pattern;
+        let formData={
+            fName:document.getElementById('firstName').value,
+            lName:document.getElementById('lastName').value,
+            email:document.getElementById('email').value,
+            password:document.getElementById('password').value,
+            number:document.getElementById('number').value,
+            zip:document.getElementById('zip').value
+        }
+        if(!(email).match(emailReg)||!(number).match(numberReg)||!(zip).match(zipReg)){
+            alert("invalid credential...!!!")
+            return false;
+        }
+        else{
+        
+        localStorage.setItem('formData',JSON.stringify(formData));
+        console.log(localStorage.getItem('formData'));
+        event.preventDefault();
+        }
+
+    })
+  }
+  if(x=="database"){
+        
+        document.getElementById("form_id").action = "connect.php";
+        document.getElementById("form_id").submit();
+
+  }
+}
+</script>        
+</body>
+</html>
